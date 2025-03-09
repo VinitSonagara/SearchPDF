@@ -2,10 +2,9 @@ import React from 'react';
 import TextItem from './TextItem';
 
 const Page = (props) => {
-	const { pageNumber, width, height, textItems } = props;
+	const { width, height, textItems } = props;
 	return (
 		<div
-			key={pageNumber}
 			style={{
 				width: `${width}px`,
 				height: `${height}px`,
@@ -23,7 +22,7 @@ const Page = (props) => {
 				} = item;
 				return (
 					<TextItem
-						index={index}
+						key={index}
 						translateX={translateX}
 						translateY={translateY}
 						height={itemHeight}

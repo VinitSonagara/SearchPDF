@@ -114,7 +114,7 @@ const App = () => {
 					const { pageNumber, width, height, textItems } = page;
 					return (
 						<Page
-							pageNumber={pageNumber}
+							key={pageNumber}
 							width={width}
 							height={height}
 							textItems={textItems}

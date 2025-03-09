@@ -1,12 +1,10 @@
 import React from 'react';
 
 const TextItem = (props) => {
-	const { index, translateX, translateY, height, width, highlight, str } =
-		props;
+	const { translateX, translateY, height, width, highlight, str } = props;
 
 	return (
 		<div
-			key={index}
 			style={{
 				left: `${translateX}px`,
 				bottom: `${translateY}px`,
