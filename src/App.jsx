@@ -10,10 +10,12 @@ const App = () => {
 	const [pdf, setPdf] = useState([]);
 	const [searchQuery, setSearchQuery] = useState('');
 	const [allTextItems, setAllTextItems] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	const handleFileChange = async (e) => {
 		const file = e.target.files[0];
 		if (file) {
+			setLoading(true);
 			const reader = new FileReader();
 			reader.onload = async () => {
 				const arrayBuffer = reader.result;
@@ -54,6 +56,7 @@ const App = () => {
 
 				setAllTextItems(textItems);
 				setPdf(pages);
+				setLoading(false);
 			};
 
 			reader.readAsArrayBuffer(file);
@@ -109,19 +112,24 @@ const App = () => {
 				/>
 				<button onClick={handleSearch}>Search</button>
 			</div>
-			<div>
-				{pdf.map((page) => {
-					const { pageNumber, width, height, textItems } = page;
-					return (
-						<Page
-							key={pageNumber}
-							width={width}
-							height={height}
-							textItems={textItems}
-						/>
-					);
-				})}
-			</div>
+
+			{loading ? (
+				<div className='loader' />
+			) : (
+				<div>
+					{pdf.map((page) => {
+						const { pageNumber, width, height, textItems } = page;
+						return (
+							<Page
+								key={pageNumber}
+								width={width}
+								height={height}
+								textItems={textItems}
+							/>
+						);
+					})}
+				</div>
+			)}
 		</div>
 	);
 };
