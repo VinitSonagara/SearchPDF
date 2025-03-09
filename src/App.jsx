@@ -4,7 +4,7 @@ import Fuse from 'fuse.js';
 import './App.css';
 import Page from './Page';
 
-GlobalWorkerOptions.workerSrc = `../public/pdf.worker.min.mjs`;
+GlobalWorkerOptions.workerSrc = `/pdf.worker.min.mjs`;
 
 const App = () => {
 	const [pdf, setPdf] = useState([]);
