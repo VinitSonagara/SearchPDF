@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { GlobalWorkerOptions, getDocument } from 'pdfjs-dist';
 import Fuse from 'fuse.js';
 import './App.css';
+import Page from './Page';
 
 GlobalWorkerOptions.workerSrc = `../public/pdf.worker.min.mjs`;
 
@@ -46,7 +47,8 @@ const App = () => {
 					pages.push({
 						pageNumber: i,
 						textItems: pageItems,
-						viewport,
+						height: viewport.height,
+						width: viewport.width,
 					});
 				}
 
@@ -108,31 +110,17 @@ const App = () => {
 				<button onClick={handleSearch}>Search</button>
 			</div>
 			<div>
-				{pdf.map((page) => (
-					<div
-						key={page.pageNumber}
-						style={{
-							width: `${page.viewport.width}px`,
-							height: `${page.viewport.height}px`,
-						}}
-						className='pdf-page'
-					>
-						{page.textItems.map((item, index) => (
-							<div
-								key={index}
-								style={{
-									left: `${item.translateX}px`,
-									bottom: `${item.translateY}px`,
-									fontSize: `${Math.abs(item.height)}px`,
-									width: `${item.width}px`,
-								}}
-								className={`text-item ${item.highlight ? 'highlight' : ''}`}
-							>
-								{item.str}
-							</div>
-						))}
-					</div>
-				))}
+				{pdf.map((page) => {
+					const { pageNumber, width, height, textItems } = page;
+					return (
+						<Page
+							pageNumber={pageNumber}
+							width={width}
+							height={height}
+							textItems={textItems}
+						/>
+					);
+				})}
 			</div>
 		</div>
 	);
