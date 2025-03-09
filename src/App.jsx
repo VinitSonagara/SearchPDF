@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { GlobalWorkerOptions, getDocument } from 'pdfjs-dist';
 import Fuse from 'fuse.js';
+import './App.css';
 
 GlobalWorkerOptions.workerSrc = `../public/pdf.worker.min.mjs`;
 
@@ -89,9 +90,15 @@ const App = () => {
 
 	return (
 		<div>
-			<h1>PDF Search App with Fuzzy Matching</h1>
-			<input type='file' accept='application/pdf' onChange={handleFileChange} />
-			<div>
+			<h1>PDF Search App</h1>
+			<div className='input-field'>
+				<input
+					type='file'
+					accept='application/pdf'
+					onChange={handleFileChange}
+				/>
+			</div>
+			<div className='input-field'>
 				<input
 					type='text'
 					placeholder='Search text...'
@@ -105,25 +112,21 @@ const App = () => {
 					<div
 						key={page.pageNumber}
 						style={{
-							position: 'relative',
-							border: '1px solid #ccc',
-							marginBottom: '20px',
 							width: `${page.viewport.width}px`,
 							height: `${page.viewport.height}px`,
 						}}
+						className='pdf-page'
 					>
 						{page.textItems.map((item, index) => (
 							<div
 								key={index}
 								style={{
-									position: 'absolute',
 									left: `${item.translateX}px`,
 									bottom: `${item.translateY}px`,
 									fontSize: `${Math.abs(item.height)}px`,
 									width: `${item.width}px`,
-									whiteSpace: 'pre',
-									backgroundColor: item.highlight ? 'yellow' : 'transparent',
 								}}
+								className={`text-item ${item.highlight ? 'highlight' : ''}`}
 							>
 								{item.str}
 							</div>

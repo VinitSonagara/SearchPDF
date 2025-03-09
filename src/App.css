@@ -1,0 +1,68 @@
+body {
+	background-color: #f4f4f4;
+	margin: 0;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+h1 {
+	color: #333;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: center;
+}
+
+.input-field {
+	display: flex;
+	justify-content: center;
+}
+
+input[type='file'],
+input[type='text'] {
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	margin-bottom: 10px;
+}
+
+button {
+	padding: 10px 20px;
+	font-size: 16px;
+	color: #fff;
+	height: 38px;
+	background-color: #007bff;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	margin-left: 18px;
+}
+
+button:hover {
+	background-color: #0056b3;
+}
+
+.pdf-page {
+	position: relative;
+	border: 1px solid #ccc;
+	margin-bottom: 20px;
+	background-color: #fff;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.text-item {
+	position: absolute;
+	white-space: pre;
+	color: #333;
+}
+
+.text-item.highlight {
+	background-color: #ffff00;
+	font-weight: bold;
+}
